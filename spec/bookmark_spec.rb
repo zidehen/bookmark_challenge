@@ -8,5 +8,4 @@ describe Bookmark do
       expect(bookmarks).to include("http://www.youtube.com")
     end
   end
-
 end
