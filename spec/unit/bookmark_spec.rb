@@ -18,8 +18,9 @@ describe Bookmark do
   describe '#add bookmarks' do
     it 'adds a new bookmark to the list' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
-      Bookmark.create('www.test.com')
-      expect(Bookmark.all).to include 'www.test.com'
+      bookmark = Bookmark.create(url: 'www.test.com', title: 'Test Bookmark').first
+      expect(bookmark['url']).to eq('www.test.com')
+      expect(bookmark['title']).to eq('Test Bookmark')
     end
   end
 end
