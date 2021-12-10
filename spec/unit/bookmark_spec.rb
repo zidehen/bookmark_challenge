@@ -1,5 +1,6 @@
 require 'bookmark'
 require 'database_helpers'
+
 describe Bookmark do
   describe '#all bookmarks' do
     it 'shows a list of all bookmarks ' do
@@ -31,4 +32,20 @@ describe Bookmark do
 
     end
   end
+
+  describe '#delete bookmarks' do
+    it 'deletes bookmark from the list' do
+      bookmark = Bookmark.create(url: 'www.test.com', title: 'Test Bookmark')
+      
+      Bookmark.delete(id: bookmark.id)
+      
+      expect(Bookmark.all.length).to eq 0
+    end
+  end
+end
+
+def persisted_data(id:)
+  connection = PG.connect(dbname: 'bookmark_manager_test')
+  result = connection.query("SELECT * FROM bookmarks WHERE id = #{id};")
+  result.first
 end
