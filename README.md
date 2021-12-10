@@ -12,6 +12,11 @@ As a user
 So that I can save new websites 
 I would like to add new bookmarks to my list
 ```
+```
+As a user
+So that I can remove websites I am no longer interested in 
+I would like to delete bookmarks from my list
+```
 
 ## Domain Model
 
