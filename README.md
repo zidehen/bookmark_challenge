@@ -17,6 +17,11 @@ As a user
 So that I can remove websites I am no longer interested in 
 I would like to delete bookmarks from my list
 ```
+```
+As a user
+So that I can change a bookmark from my list 
+I would like to update a bookmark
+```
 
 ## Domain Model
 
