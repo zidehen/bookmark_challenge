@@ -27,7 +27,11 @@ As a user
 So that the bookmarks I save are useful
 I want to only save a valid URL
 ```
-
+```
+As a user
+So that I can make interesting notes
+I want to add a Comment to a Bookmark
+```
 ## Domain Model
 
 ![Domain model](https://github.com/makersacademy/course/raw/main/bookmark_manager/images/bookmark_manager_1.png)
