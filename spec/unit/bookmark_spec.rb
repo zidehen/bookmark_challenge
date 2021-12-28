@@ -54,6 +54,19 @@ describe Bookmark do
       expect(updated_bookmark.url).to eq 'www.github.com'
     end
   end
+
+  describe '#find bookmark' do
+    it 'finds and returns the requested bookmark' do
+      bookmark = Bookmark.create(url: 'www.test.com', title: 'Test Bookmark')
+      
+      result = Bookmark.find(id: bookmark.id)
+      
+      expect(result).to be_a Bookmark
+      expect(result.id).to eq bookmark.id
+      expect(result.title).to eq 'Test Bookmark'
+      expect(result.url).to eq 'www.test.com'
+    end
+  end
 end
 
 def persisted_data(id:)
