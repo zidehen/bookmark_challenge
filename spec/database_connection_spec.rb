@@ -8,10 +8,20 @@ describe DatabaseConnection do
       DatabaseConnection.setup('bookmark_manager_test')
     end
 
-    it 'this connection is persistant' do
+    # it 'this connection is persistant' do
+    #   connection = DatabaseConnection.setup('bookmark_manager_test')
+
+    #   expect(DatabaseConnection.connection).to eq connection
+    # end
+  end
+
+  describe '.query' do
+    it 'executes a SQL query string via PG' do
       connection = DatabaseConnection.setup('bookmark_manager_test')
 
-      expect(DatabaseConnection.connection).to eq connection
+      expect(connection).to receive(:exec_params).with("SELECT * FROM bookmarks;")
+
+      DatabaseConnection.query("SELECT * FROM bookmarks;")
     end
   end
 end
