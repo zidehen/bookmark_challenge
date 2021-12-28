@@ -29,7 +29,11 @@ describe Bookmark do
       expect(bookmark.id).to eq persisted_data['id']
       expect(bookmark.title).to eq 'Test Bookmark'
       expect(bookmark.url).to eq 'http://www.test.com'
+    end
 
+    it 'does not create a new bookmark if the URL is not valid' do
+      Bookmark.create(url: 'not a valid bookmark', title: 'not a valid bookmark')
+      expect(Bookmark.all).to be_empty
     end
   end
 
