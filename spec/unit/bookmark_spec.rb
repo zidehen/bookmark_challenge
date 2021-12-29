@@ -23,7 +23,7 @@ describe Bookmark do
   describe '#add bookmarks' do
     it 'adds a new bookmark to the list' do
       bookmark = Bookmark.create(url: 'http://www.test.com', title: 'Test Bookmark')
-      persisted_data = persisted_data(id: bookmark.id)
+      persisted_data = persisted_data(id: bookmark.id, table: 'bookmarks')
       
       expect(bookmark).to be_a Bookmark
       expect(bookmark.id).to eq persisted_data['id']
@@ -71,10 +71,17 @@ describe Bookmark do
       expect(result.url).to eq 'http://www.test.com'
     end
   end
-end
 
-def persisted_data(id:)
-  connection = PG.connect(dbname: 'bookmark_manager_test')
-  result = connection.query("SELECT * FROM bookmarks WHERE id = #{id};")
-  result.first
+  describe '#comments' do
+    it 'returns a list of comments' do
+      bookmark = Bookmark.create(url: 'http://www.test.com', title: 'Test Bookmark')
+      DatabaseConnection.query(
+        "INSERT INTO comments (id, text, bookmark_id) VALUES(1, 'Test comment', $1)", 
+        [bookmark.id]
+      )
+      comment = bookmark.comments.first
+
+      expect(comment['text']).to eq 'Test comment'
+    end
+  end
 end
